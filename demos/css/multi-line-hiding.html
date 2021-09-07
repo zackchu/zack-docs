@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    /*.注意：这个只是在pc端适用，在移动端不兼容。*/
+    .content {
+      width: 200px;
+      border: 1px solid #000;
+      color: red;
+      position: relative;
+      /*将超出部分隐藏*/
+      overflow: hidden;
+      /*将对象作为弹性伸缩盒子模型显示*/
+      /*（一些版本低的浏览器在前面加上前缀-webkit）*/
+      display: -webkit-box;
+      /*设置伸缩盒对象的子元素的排列方式*/
+      -webkit-box-orient: vertical;
+      /*用来限制显示的文本的行数*/
+      -webkit-line-clamp: 3;
+      /*用省略号“…”隐藏超出范围的文本 */
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  “我”36岁，美术科班出身，原本爱好抽象画，多年来为了养家糊口成为专业肖像画家。结婚六周年纪念日前，妻子毫无征兆地提出已有外遇，要求离婚，于是“我”独自离家开车在外游荡了一个半月，*终应好友雨田政彦之邀，住进小田原郊外山间其父雨田具彦的旧居兼画室，期待通过环境的改变调整心情。奇妙的事件就发生在搬家后不到八个月的时间里。雨田政彦帮“我”介绍了山下绘画班任教的工作，“我”和班里的两位人妻先后成了情人，经神秘邻居免色的精心策划,和班上的少女真理惠也建立了密切联系。房子主人雨田具彦是著名日本画画家，“我”搬进那栋房子后不久，意外在阁楼发现了一幅雨田具彦不为世人所知的大师级作品，名为“刺杀骑士团长”。
+</div>
+</body>
+</html>

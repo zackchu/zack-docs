@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+echo '输入待加密的文本：'
+read -r inputedTxt
+echo '以下为签名且加密的文本：'
+echo "$inputedTxt" | gpg -a -r others_email@example.com -u your_email@example.com -s -e
