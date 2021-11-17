@@ -1,0 +1,12 @@
+[log]
+	showSignature = true
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[push]
+	gpgSign = true
