@@ -24,7 +24,7 @@
 
 ### 9.解构赋值
 
-### 10.rest参数
+### 10.rest 参数
 
 > 扩展运算符
 
@@ -79,11 +79,11 @@ string reaches the given length. The padding is applied from the start of the cu
 
 正则表达式中的`.`匹配所有字符
 
-### 3.正则表达式捕获Named Group
+### 3.正则表达式捕获 Named Group
 
-### 4.正则Lookbehind断言
+### 4.正则 Lookbehind 断言
 
-### 5.正则Unicode属性转义符
+### 5.正则 Unicode 属性转义符
 
 ### 6.`rest/spread`
 
@@ -105,7 +105,7 @@ string reaches the given length. The padding is applied from the start of the cu
 
 ### 4.`Symbol.protoype.description`
 
-### 5.可选的catch参数
+### 5.可选的 catch 参数
 
 ### 6.`Array.porotype.sort`
 
@@ -127,21 +127,26 @@ string reaches the given length. The padding is applied from the start of the cu
 
 ```javascript
 class Foo {
-    #x = 0;
+	#x = 0;
 
-    increment() {
-        this.#x++;
-    }
+	increment() {
+		this.#x++;
+	}
 
-    getNum() {
-        return this.#x;
-    }
+	getNum() {
+		return this.#x;
+	}
 }
 ```
 
 ### 5.可选链运算符
 
-`obj?.prop1?.prop2`
+```javascript
+obj?.prop1?.prop2;
+obj?.[expr];
+arr?.[index];
+func?.(args);
+```
 
 ### 6.`Bigint`
 
