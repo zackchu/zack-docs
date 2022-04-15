@@ -37,3 +37,17 @@ _解决办法：安装 `curl-devel` 并重新编译安装_
 ```bash
 sudo yum install curl-devel
 ```
+
+## 4. `make` 报错
+
+```shell
+/bin/sh: 1: msgfmt: not found
+#或
+po/bg.msg make[1]: *** [Makefile:254: po/bg.msg] Error 127
+```
+
+解决办法
+
+```shell
+sudo apt install gettext
+```
