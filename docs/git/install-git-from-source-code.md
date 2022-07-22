@@ -4,6 +4,8 @@
 
 ```bash
 sudo yum install gcc
+
+sudo apt install build-essential
 ```
 
 ## 2. 运行 `make` 报错
