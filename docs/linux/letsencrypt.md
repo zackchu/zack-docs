@@ -2,6 +2,8 @@
 
 [TOC]
 
+> See [acme.sh](https://github.com/acmesh-official/acme.sh) for more details.
+
 ## 1. Install `acme.sh`
 
 ```shell
@@ -30,8 +32,6 @@ acme.sh --set-default-ca --server letsencrypt
 ## 3 Issue a cert
 
 ```shell
-acme.sh --issue -d example.com -w /var/www/html
-
 acme.sh --issue -d example.com -w /var/www/html
 ```
 
