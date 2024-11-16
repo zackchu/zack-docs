@@ -1,6 +1,6 @@
 # 通过源码安装`git`会出现的错及解决：
 
-## 1. 运行 `./configure` 报错，没有c
+## 1. 运行 `./configure` 报错，没有 c
 
 ```bash
 sudo yum install gcc

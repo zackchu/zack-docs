@@ -14,23 +14,19 @@ npm i -D gulp-rename
 
 ### 2. `gulp-uglify`
 
-压缩js文件
+压缩 js 文件
 
 ```bash
 npm i -D gulp-uglify
 ```
 
 ```js
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var pipeline = require('readable-stream').pipeline;
+var gulp = require("gulp");
+var uglify = require("gulp-uglify");
+var pipeline = require("readable-stream").pipeline;
 
-gulp.task('compress', function () {
-    return pipeline(
-        gulp.src('lib/*.js'),
-        uglify(),
-        gulp.dest('dist')
-    );
+gulp.task("compress", function () {
+	return pipeline(gulp.src("lib/*.js"), uglify(), gulp.dest("dist"));
 });
 ```
 
@@ -53,15 +49,18 @@ $ npm install --save-dev gulp-babel@7 babel-core babel-preset-env
 ```
 
 ```js
-const gulp = require('gulp');
-const babel = require('gulp-babel');
+const gulp = require("gulp");
+const babel = require("gulp-babel");
 
-gulp.task('default', () =>
-    gulp.src('src/app.js')
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
-        .pipe(gulp.dest('dist'))
+gulp.task("default", () =>
+	gulp
+		.src("src/app.js")
+		.pipe(
+			babel({
+				presets: ["@babel/env"],
+			})
+		)
+		.pipe(gulp.dest("dist"))
 );
 ```
 
@@ -72,22 +71,24 @@ gulp.task('default', () =>
 ### 6. `gulp-if`
 
 ```js
-const {src, dest} = require('gulp');
-const gulpif = require('gulp-if');
-const uglify = require('gulp-uglify');
+const { src, dest } = require("gulp");
+const gulpif = require("gulp-if");
+const uglify = require("gulp-uglify");
 
 function isJavaScript(file) {
-    // Check if file extension is '.js'
-    return file.extname === '.js';
+	// Check if file extension is '.js'
+	return file.extname === ".js";
 }
 
 exports.default = function () {
-    // Include JavaScript and CSS files in a single pipeline
-    return src(['src/*.js', 'src/*.css'])
-        // Only apply gulp-uglify plugin to JavaScript files
-        .pipe(gulpif(isJavaScript, uglify()))
-        .pipe(dest('output/'));
-}
+	// Include JavaScript and CSS files in a single pipeline
+	return (
+		src(["src/*.js", "src/*.css"])
+			// Only apply gulp-uglify plugin to JavaScript files
+			.pipe(gulpif(isJavaScript, uglify()))
+			.pipe(dest("output/"))
+	);
+};
 ```
 
 ### 7. 行内插件
@@ -98,22 +99,26 @@ exports.default = function () {
 2. Instead of forking a plugin that exists to add a feature you want.
 
 ```js
-const {src, dest} = require('gulp');
-const uglify = require('uglify-js');
-const through2 = require('through2');
+const { src, dest } = require("gulp");
+const uglify = require("uglify-js");
+const through2 = require("through2");
 
 exports.default = function () {
-    return src('src/*.js')
-        // Instead of using gulp-uglify, you can create an inline plugin
-        .pipe(through2.obj(function (file, _, cb) {
-            if (file.isBuffer()) {
-                const code = uglify.minify(file.contents.toString())
-                file.contents = Buffer.from(code.code)
-            }
-            cb(null, file);
-        }))
-        .pipe(dest('output/'));
-}
+	return (
+		src("src/*.js")
+			// Instead of using gulp-uglify, you can create an inline plugin
+			.pipe(
+				through2.obj(function (file, _, cb) {
+					if (file.isBuffer()) {
+						const code = uglify.minify(file.contents.toString());
+						file.contents = Buffer.from(code.code);
+					}
+					cb(null, file);
+				})
+			)
+			.pipe(dest("output/"))
+	);
+};
 ```
 
 ### 8. `dotenv`
@@ -121,10 +126,10 @@ exports.default = function () {
 #### Install
 
 ```bash
-# with npm 
+# with npm
 npm install dotenv
- 
-# or with Yarn 
+
+# or with Yarn
 yarn add dotenv
 ```
 
@@ -133,7 +138,7 @@ yarn add dotenv
 在项目中尽可能早的运行：
 
 ```js
-require('dotenv').config()
+require("dotenv").config();
 ```
 
 在项目根目录下创建 `.env` 文件
@@ -141,20 +146,20 @@ require('dotenv').config()
 ### 9. `gulp-sourcemaps`
 
 ```js
-var gulp = require('gulp');
-var plugin1 = require('gulp-plugin1');
-var plugin2 = require('gulp-plugin2');
-var sourcemaps = require('gulp-sourcemaps');
+var gulp = require("gulp");
+var plugin1 = require("gulp-plugin1");
+var plugin2 = require("gulp-plugin2");
+var sourcemaps = require("gulp-sourcemaps");
 
 function javascript() {
-    gulp.src('src/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(plugin1())
-        .pipe(plugin2())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist'));
-};
-
+	gulp
+		.src("src/**/*.js")
+		.pipe(sourcemaps.init())
+		.pipe(plugin1())
+		.pipe(plugin2())
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest("dist"));
+}
 
 exports.javascript = javascript;
 ```
@@ -162,19 +167,20 @@ exports.javascript = javascript;
 将 `sourcemaps` 写入外部文件
 
 ```js
-var gulp = require('gulp');
-var plugin1 = require('gulp-plugin1');
-var plugin2 = require('gulp-plugin2');
-var sourcemaps = require('gulp-sourcemaps');
+var gulp = require("gulp");
+var plugin1 = require("gulp-plugin1");
+var plugin2 = require("gulp-plugin2");
+var sourcemaps = require("gulp-sourcemaps");
 
 function javascript() {
-    gulp.src('src/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(plugin1())
-        .pipe(plugin2())
-        .pipe(sourcemaps.write('../maps'))
-        .pipe(gulp.dest('dist'));
-};
+	gulp
+		.src("src/**/*.js")
+		.pipe(sourcemaps.init())
+		.pipe(plugin1())
+		.pipe(plugin2())
+		.pipe(sourcemaps.write("../maps"))
+		.pipe(gulp.dest("dist"));
+}
 
 exports.javascript = javascript;
 ```
@@ -186,21 +192,22 @@ npm install node-sass gulp-sass --save-dev
 ```
 
 ```js
-'use strict';
+"use strict";
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require("gulp");
+var sass = require("gulp-sass");
 
-sass.compiler = require('node-sass');
+sass.compiler = require("node-sass");
 
-gulp.task('sass', function () {
-    return gulp.src('./sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'));
+gulp.task("sass", function () {
+	return gulp
+		.src("./sass/**/*.scss")
+		.pipe(sass().on("error", sass.logError))
+		.pipe(gulp.dest("./css"));
 });
 
-gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['sass']);
+gulp.task("sass:watch", function () {
+	gulp.watch("./sass/**/*.scss", ["sass"]);
 });
 ```
 
@@ -211,40 +218,43 @@ npm install --save-dev gulp-autoprefixer
 ```
 
 ```js
-const gulp = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
+const gulp = require("gulp");
+const autoprefixer = require("gulp-autoprefixer");
 
-exports.default = () => (
-    gulp.src('src/app.css')
-        .pipe(autoprefixer({
-            cascade: false
-        }))
-        .pipe(gulp.dest('dist'))
-);
+exports.default = () =>
+	gulp
+		.src("src/app.css")
+		.pipe(
+			autoprefixer({
+				cascade: false,
+			})
+		)
+		.pipe(gulp.dest("dist"));
 ```
 
 ### 12. `gulp-clean-css`
 
-压缩css
+压缩 css
 
 ```bash
 npm install gulp-clean-css --save-dev
 ```
 
 ```js
-const gulp = require('gulp');
-const cleanCSS = require('gulp-clean-css');
+const gulp = require("gulp");
+const cleanCSS = require("gulp-clean-css");
 
-gulp.task('minify-css', () => {
-    return gulp.src('styles/*.css')
-        .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('dist'));
+gulp.task("minify-css", () => {
+	return gulp
+		.src("styles/*.css")
+		.pipe(cleanCSS({ compatibility: "ie8" }))
+		.pipe(gulp.dest("dist"));
 });
 ```
 
 ### 13. `gulp-notify`
 
-在macOS、Linux、Windows下发送通知
+在 macOS、Linux、Windows 下发送通知
 
 ```bash
 npm install --save-dev gulp-notify
@@ -252,14 +262,12 @@ npm install --save-dev gulp-notify
 
 ```js
 var notify = require("gulp-notify");
-gulp.src("./src/test.ext")
-    .pipe(notify("Hello Gulp!"));
+gulp.src("./src/test.ext").pipe(notify("Hello Gulp!"));
 ```
 
 ```js
 var notify = require("gulp-notify");
-gulp.src("./src/test.ext")
-    .pipe(notify("Found file: <%= file.relative %>!"));
+gulp.src("./src/test.ext").pipe(notify("Found file: <%= file.relative %>!"));
 ```
 
 ## 三、`Globs` 匹配
@@ -274,7 +282,7 @@ gulp.src("./src/test.ext")
 
 ### 2. 特殊字符 `*`
 
-匹配任意数量（包括0）字符。
+匹配任意数量（包括 0）字符。
 
 ### 3. 特殊字符 `**`
 
@@ -316,14 +324,14 @@ gulp.src("./src/test.ext")
    > 代表除了 `ready` 和 `error` 之外的所有类型
 
 ```js
-const {watch} = require('gulp');
+const { watch } = require("gulp");
 
 exports.default = function () {
-    // All events will be watched
-    watch('src/*.js', {events: 'all'}, function (cb) {
-        // body omitted
-        cb();
-    });
+	// All events will be watched
+	watch("src/*.js", { events: "all" }, function (cb) {
+		// body omitted
+		cb();
+	});
 };
 ```
 
@@ -340,14 +348,14 @@ exports.default = function () {
 设置 `{queue: false}` 可以禁用队列。
 
 ```js
-const {watch} = require('gulp');
+const { watch } = require("gulp");
 
 exports.default = function () {
-    // The task will be run (concurrently) for every change made
-    watch('src/*.js', {queue: false}, function (cb) {
-        // body omitted
-        cb();
-    });
+	// The task will be run (concurrently) for every change made
+	watch("src/*.js", { queue: false }, function (cb) {
+		// body omitted
+		cb();
+	});
 };
 ```
 
@@ -358,21 +366,21 @@ exports.default = function () {
 可以设置 `delay` 选项来设置延迟时间。
 
 ```js
-const {watch} = require('gulp');
+const { watch } = require("gulp");
 
 exports.default = function () {
-    // The task won't be run until 500ms have elapsed since the first change
-    watch('src/*.js', {delay: 500}, function (cb) {
-        // body omitted
-        cb();
-    });
+	// The task won't be run until 500ms have elapsed since the first change
+	watch("src/*.js", { delay: 500 }, function (cb) {
+		// body omitted
+		cb();
+	});
 };
 ```
 
-### 6. `watch` 实例*
+### 6. `watch` 实例\*
 
 `watch()` 方法会返回一个 [chokidar](https://www.npmjs.com/package/chokidar) 实例，没有队列、延迟或者异步完成功能。
 
 ### 7. 可选依赖
 
-`gulp` 有个可选依赖 `fsevents` ，mac专属的文件监视。
+`gulp` 有个可选依赖 `fsevents` ，mac 专属的文件监视。

@@ -249,7 +249,7 @@ input:hover,
 
 ```css
 .a .b__c {
-	content: '.a', '& .b', '&__c';
+	content: ".a", "& .b", "&__c";
 }
 ```
 

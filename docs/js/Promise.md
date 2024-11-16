@@ -2,25 +2,25 @@
 
 A `Promise` is in one of these states:
 
-- *pending*: initial state, neither fulfilled nor rejected.
-- *fulfilled*: meaning that the operation was completed successfully.
-- *rejected*: meaning that the operation failed.
+- _pending_: initial state, neither fulfilled nor rejected.
+- _fulfilled_: meaning that the operation was completed successfully.
+- _rejected_: meaning that the operation failed.
 
 ## Chained Promises
 
 ```js
-const myPromise = (new Promise(myExecutorFunc))
-    .then(handleFulfilledA, handleRejectedA)
-    .then(handleFulfilledB, handleRejectedB)
-    .then(handleFulfilledC, handleRejectedC);
+const myPromise = new Promise(myExecutorFunc)
+	.then(handleFulfilledA, handleRejectedA)
+	.then(handleFulfilledB, handleRejectedB)
+	.then(handleFulfilledC, handleRejectedC);
 
 // or, perhaps better ...
 
-const myPromise = (new Promise(myExecutorFunc))
-    .then(handleFulfilledA)
-    .then(handleFulfilledB)
-    .then(handleFulfilledC)
-    .catch(handleRejectedAny);
+const myPromise = new Promise(myExecutorFunc)
+	.then(handleFulfilledA)
+	.then(handleFulfilledB)
+	.then(handleFulfilledC)
+	.catch(handleRejectedAny);
 ```
 
 ## Static methods
@@ -38,14 +38,13 @@ If it rejects, it is rejected with the reason from the first promise in the iter
 const promise1 = Promise.resolve(3);
 const promise2 = 42;
 const promise3 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, 'foo');
+	setTimeout(resolve, 100, "foo");
 });
 
 Promise.all([promise1, promise2, promise3]).then((values) => {
-    console.log(values);
+	console.log(values);
 });
 // expected output: Array [3, 42, "foo"]
-
 ```
 
 ### `Promise.allSettled(iterable)`
@@ -57,15 +56,18 @@ objects that each describe the outcome of each promise.
 
 ```js
 const promise1 = Promise.resolve(3);
-const promise2 = new Promise((resolve, reject) => setTimeout(reject, 100, 'foo'));
+const promise2 = new Promise((resolve, reject) =>
+	setTimeout(reject, 100, "foo")
+);
 const promises = [promise1, promise2];
 
-Promise.allSettled(promises).then((results) => results.forEach((result) => console.log(result.status)));
+Promise.allSettled(promises).then((results) =>
+	results.forEach((result) => console.log(result.status))
+);
 
 // expected output:
 // "fulfilled"
 // "rejected"
-
 ```
 
 ### `Promise.any(iterable)`
@@ -75,15 +77,14 @@ promise that resolves with the value from that promise.
 
 ```js
 const promise1 = Promise.reject(0);
-const promise2 = new Promise((resolve) => setTimeout(resolve, 100, 'quick'));
-const promise3 = new Promise((resolve) => setTimeout(resolve, 500, 'slow'));
+const promise2 = new Promise((resolve) => setTimeout(resolve, 100, "quick"));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 500, "slow"));
 
 const promises = [promise1, promise2, promise3];
 
 Promise.any(promises).then((value) => console.log(value));
 
 // expected output: "quick"
-
 ```
 
 ### `Promise.race(iterable)`
@@ -96,19 +97,18 @@ If it rejects, it is rejected with the reason from the first promise that was re
 
 ```js
 const promise1 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 500, 'one');
+	setTimeout(resolve, 500, "one");
 });
 
 const promise2 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, 'two');
+	setTimeout(resolve, 100, "two");
 });
 
 Promise.race([promise1, promise2]).then((value) => {
-    console.log(value);
-    // Both resolve, but promise2 is faster
+	console.log(value);
+	// Both resolve, but promise2 is faster
 });
 // expected output: "two"
-
 ```
 
 ### `Promise.reject(reason)`
@@ -117,16 +117,15 @@ Returns a new `Promise` object that is rejected with the given reason.
 
 ```js
 function resolved(result) {
-    console.log('Resolved');
+	console.log("Resolved");
 }
 
 function rejected(result) {
-    console.error(result);
+	console.error(result);
 }
 
-Promise.reject(new Error('fail')).then(resolved, rejected);
+Promise.reject(new Error("fail")).then(resolved, rejected);
 // expected output: Error: fail
-
 ```
 
 ### `Promise.resolve(value)`

@@ -62,7 +62,7 @@ firewall-cmd --list-ports
 firewall-cmd --zone=public --add-port=8082/tcp --permanent
 ```
 
-## 查看Linux服务器开启的端口
+## 查看 Linux 服务器开启的端口
 
 ```shell
 netstat -ntlp

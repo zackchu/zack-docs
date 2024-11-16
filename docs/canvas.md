@@ -15,8 +15,8 @@ var radialgradient = ctx.createRadialGradient(75, 75, 0, 75, 75, 100);
 ```
 
 ```js
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
 // Create a linear gradient
 // The start gradient point is at x=20, y=0
@@ -24,9 +24,9 @@ var ctx = canvas.getContext('2d');
 var gradient = ctx.createLinearGradient(20, 0, 220, 0);
 
 // Add three color stops
-gradient.addColorStop(0, 'green');
-gradient.addColorStop(.5, 'cyan');
-gradient.addColorStop(1, 'green');
+gradient.addColorStop(0, "green");
+gradient.addColorStop(0.5, "cyan");
+gradient.addColorStop(1, "green");
 
 // Set the fill style and draw a rectangle
 ctx.fillStyle = gradient;

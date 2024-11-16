@@ -28,7 +28,7 @@ gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 ```
 
-## *3.默认情况下会安装 `stable` 版本，如果需要 `mainline` 版本，执行以下命令：*
+## _3.默认情况下会安装 `stable` 版本，如果需要 `mainline` 版本，执行以下命令：_
 
 ```bash
 sudo yum-config-manager --enable nginx-mainline

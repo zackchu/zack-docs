@@ -38,20 +38,20 @@ indent_style = space
 indent_size = 2
 ```
 
-> For Windows Users:   
+> For Windows Users:  
 > To create an `.editorconfig` file within Windows Explorer, you need to create a file named `.editorconfig.`, which Windows Explorer will automatically rename to .editorconfig.
 
 ## Wildcard Patterns
 
-|符号|释义|
-|---|---|
-|*|Matches any string of characters, except path separators (/)|
-|**|Matches any string of characters|
-|?|Matches any single character|
-|\[name\]|Matches any single character in *name*|
-|\[!name\]|Matches any single character not in *name*|
-|{s1,s2,s3}|Matches any of the strings given (separated by commas)<br>(Available since EditorConfig Core 0.11.0)|
-|{num1..num2}|Matches any integer numbers between num1 and num2, where num1 and num2 can be either positive or negative|
+| 符号         | 释义                                                                                                      |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| \*           | Matches any string of characters, except path separators (/)                                              |
+| \*\*         | Matches any string of characters                                                                          |
+| ?            | Matches any single character                                                                              |
+| \[name\]     | Matches any single character in _name_                                                                    |
+| \[!name\]    | Matches any single character not in _name_                                                                |
+| {s1,s2,s3}   | Matches any of the strings given (separated by commas)<br>(Available since EditorConfig Core 0.11.0)      |
+| {num1..num2} | Matches any integer numbers between num1 and num2, where num1 and num2 can be either positive or negative |
 
 > Special characters can be escaped with a backslash, so they won't be interpreted as wildcard patterns.
 

@@ -1,4 +1,4 @@
-# JavaScript知识点
+# JavaScript 知识点
 
 [toc]
 
@@ -22,7 +22,6 @@ const test = {
 
 console.log(test.func());
 // expected output: 42
-
 ```
 
 #### 1.1.1. 全局上下文
@@ -37,8 +36,8 @@ a = 37;
 console.log(window.a); // 37
 
 this.b = "MDN";
-console.log(window.b)  // "MDN"
-console.log(b)         // "MDN"
+console.log(window.b); // "MDN"
+console.log(b); // "MDN"
 ```
 
 #### 1.1.2 函数上下文
@@ -55,10 +54,10 @@ function f1() {
 }
 
 //在浏览器中：
-f1() === window;   //在浏览器中，全局对象是window
+f1() === window; //在浏览器中，全局对象是window
 
 //在Node中：
-f1() === globalThis;  
+f1() === globalThis;
 ```
 
 ##### 1.1.2.1 严格模式
@@ -76,7 +75,7 @@ f2() === undefined; // true
 
 > 在第二个例子中，`this` 应是 `undefined`，因为 `f2` 是被直接调用的，而不是作为对象的属性或方法调用的（如 `window.f2()`）。有一些浏览器最初在支持严格模式时没有正确实现这个功能，于是它们错误地返回了`window`对象。
 
-**如果要想把 this 的值从一个环境传到另一个，就要用 call 或者apply 方法，如下方的示例所示。**
+**如果要想把 this 的值从一个环境传到另一个，就要用 call 或者 apply 方法，如下方的示例所示。**
 
 #### 1.1.3 类上下文
 
@@ -91,14 +90,11 @@ class Example {
 		console.log(Object.getOwnPropertyNames(proto));
 	}
 
-	first() {
-	}
+	first() {}
 
-	second() {
-	}
+	second() {}
 
-	static third() {
-	}
+	static third() {}
 }
 
 new Example(); // ['constructor', 'first', 'second']
@@ -108,7 +104,7 @@ new Example(); // ['constructor', 'first', 'second']
 
 #### 1.1.4 派生类
 
-不像基类的构造函数，派生类的构造函数没有初始的 `this` 绑定。在构造函数中调用` super()` 会生成一个 `this` 绑定，并相当于执行如下代码，Base为基类：
+不像基类的构造函数，派生类的构造函数没有初始的 `this` 绑定。在构造函数中调用` super()` 会生成一个 `this` 绑定，并相当于执行如下代码，Base 为基类：
 
 ```js
 this = new Base();
@@ -119,21 +115,18 @@ this = new Base();
 派生类不能在调用 `super()` 之前返回，除非其构造函数返回的是一个对象，或者根本没有构造函数。
 
 ```js
-class Base {
-}
+class Base {}
 
-class Good extends Base {
-}
+class Good extends Base {}
 
 class AlsoGood extends Base {
 	constructor() {
-		return {a: 5};
+		return { a: 5 };
 	}
 }
 
 class Bad extends Base {
-	constructor() {
-	}
+	constructor() {}
 }
 
 new Good();
@@ -147,17 +140,17 @@ new Bad(); // ReferenceError
 
 ```js
 // An object can be passed as the first argument to call or apply and this will be bound to it.
-var obj = {a: 'Custom'};
+var obj = { a: "Custom" };
 
 // We declare a variable and the variable is assigned to the global window as its property.
-var a = 'Global';
+var a = "Global";
 
 function whatsThis() {
-	return this.a;  // The value of this is dependent on how the function is called
+	return this.a; // The value of this is dependent on how the function is called
 }
 
-whatsThis();          // 'Global' as this in the function isn't set, so it defaults to the global/window object
-whatsThis.call(obj);  // 'Custom' as this in the function is set to obj
+whatsThis(); // 'Global' as this in the function isn't set, so it defaults to the global/window object
+whatsThis.call(obj); // 'Custom' as this in the function is set to obj
 whatsThis.apply(obj); // 'Custom' as this in the function is set to obj
 ```
 
@@ -168,7 +161,7 @@ function add(c, d) {
 	return this.a + this.b + c + d;
 }
 
-var o = {a: 1, b: 3};
+var o = { a: 1, b: 3 };
 
 // 第一个参数是用作“this”的对象
 // 其余参数用作函数的参数
@@ -187,8 +180,8 @@ function bar() {
 	console.log(Object.prototype.toString.call(this));
 }
 
-bar.call(7);     // [object Number]
-bar.call('foo'); // [object String]
+bar.call(7); // [object Number]
+bar.call("foo"); // [object String]
 bar.call(undefined); // [object global]
 ```
 
@@ -202,13 +195,13 @@ function f() {
 	return this.a;
 }
 
-var g = f.bind({a: "azerty"});
+var g = f.bind({ a: "azerty" });
 console.log(g()); // azerty
 
-var h = g.bind({a: 'yoo'}); // bind只生效一次！
+var h = g.bind({ a: "yoo" }); // bind只生效一次！
 console.log(h()); // azerty
 
-var o = {a: 37, f: f, g: g, h: h};
+var o = { a: 37, f: f, g: g, h: h };
 console.log(o.a, o.f(), o.g(), o.h()); // 37, 37, azerty, azerty
 ```
 
@@ -218,7 +211,7 @@ console.log(o.a, o.f(), o.g(), o.h()); // 37, 37, azerty, azerty
 
 ```js
 var globalObject = this;
-var foo = (() => this);
+var foo = () => this;
 console.log(foo() === globalObject); // true
 ```
 
@@ -227,7 +220,7 @@ console.log(foo() === globalObject); // true
 ```js
 // 接着上面的代码
 // 作为对象的一个方法调用
-var obj = {foo: foo};
+var obj = { foo: foo };
 console.log(obj.foo() === globalObject); // true
 
 // 尝试使用call来设定this
@@ -249,9 +242,9 @@ console.log(foo() === globalObject); // true
 // bar的值可以在调用中设置，这反过来又设置了返回函数的值。
 var obj = {
 	bar: function () {
-		var x = (() => this);
+		var x = () => this;
 		return x;
-	}
+	},
 };
 
 // 作为obj对象的一个方法来调用bar，把它的this绑定到obj。
@@ -270,8 +263,8 @@ var fn2 = obj.bar;
 console.log(fn2()() == window); // true
 ```
 
-在上面的例子中，一个赋值给了 `obj.bar`的函数（称为匿名函数 A），返回了另一个箭头函数（称为匿名函数 B）。因此，在 `A` 调用时，函数B的`this`被永久设置为obj.bar（函数A）的`this`
-。当返回的函数（函数B）被调用时，它`this`始终是最初设置的。在上面的代码示例中，函数B的`this`被设置为函数A的`this`，即obj，所以即使被调用的方式通常将其设置为 `undefined`
+在上面的例子中，一个赋值给了 `obj.bar`的函数（称为匿名函数 A），返回了另一个箭头函数（称为匿名函数 B）。因此，在 `A` 调用时，函数 B 的`this`被永久设置为 obj.bar（函数 A）的`this`
+。当返回的函数（函数 B）被调用时，它`this`始终是最初设置的。在上面的代码示例中，函数 B 的`this`被设置为函数 A 的`this`，即 obj，所以即使被调用的方式通常将其设置为 `undefined`
 或全局对象（或者如前面示例中的其他全局执行环境中的方法），它的 `this` 也仍然是 `obj` 。
 
 ##### 1.1.5.5 作为对象的方法
@@ -285,7 +278,7 @@ var o = {
 	prop: 37,
 	f: function () {
 		return this.prop;
-	}
+	},
 };
 
 console.log(o.f()); // 37
@@ -294,7 +287,7 @@ console.log(o.f()); // 37
 请注意，这样的行为完全不会受函数定义方式或位置的影响。在前面的例子中，我们在定义对象`o`的同时，将其中的函数定义为成员 `f` 。但是，我们也可以先定义函数，然后再将其附属到`o.f`。这样做的结果是一样的：
 
 ```js
-var o = {prop: 37};
+var o = { prop: 37 };
 
 function independent() {
 	return this.prop;
@@ -311,7 +304,7 @@ console.log(o.f()); // 37
 的成员没有多大关系，最近的引用才是最重要的。
 
 ```js
-o.b = {g: independent, prop: 42};
+o.b = { g: independent, prop: 42 };
 console.log(o.b.g()); // 42
 ```
 
@@ -323,7 +316,7 @@ console.log(o.b.g()); // 42
 var o = {
 	f: function () {
 		return this.a + this.b;
-	}
+	},
 };
 var p = Object.create(o);
 p.a = 1;
@@ -332,7 +325,7 @@ p.b = 4;
 console.log(p.f()); // 5
 ```
 
-> 在这个例子中，对象 `p` 没有属于它自己的 `f` 属性，它的 `f` 属性继承自它的原型。虽然最终是在 `o` 中找到 `f` 属性的，这并没有关系；查找过程首先从 `p.f` 的引用开始，所以函数中的 `this` 指向`p`。也就是说，因为`f`是作为`p`的方法调用的，所以它的`this`指向了`p`。这是JavaScript 的原型继承中的一个有趣的特性。
+> 在这个例子中，对象 `p` 没有属于它自己的 `f` 属性，它的 `f` 属性继承自它的原型。虽然最终是在 `o` 中找到 `f` 属性的，这并没有关系；查找过程首先从 `p.f` 的引用开始，所以函数中的 `this` 指向`p`。也就是说，因为`f`是作为`p`的方法调用的，所以它的`this`指向了`p`。这是 JavaScript 的原型继承中的一个有趣的特性。
 
 ###### 1.1.5.5.2 getter 与 setter 中的 `this`
 
@@ -349,11 +342,13 @@ var o = {
 	c: 3,
 	get average() {
 		return (this.a + this.b + this.c) / 3;
-	}
+	},
 };
 
-Object.defineProperty(o, 'sum', {
-	get: sum, enumerable: true, configurable: true
+Object.defineProperty(o, "sum", {
+	get: sum,
+	enumerable: true,
+	configurable: true,
 });
 
 console.log(o.average, o.sum); // logs 2, 6
@@ -361,7 +356,7 @@ console.log(o.average, o.sum); // logs 2, 6
 
 ##### 1.1.5.6 作为构造函数
 
-当一个函数用作构造函数时（使用new关键字），它的`this`被绑定到正在构造的新对象。
+当一个函数用作构造函数时（使用 new 关键字），它的`this`被绑定到正在构造的新对象。
 
 > 虽然构造函数返回的默认值是 `this` 所指的那个对象，但它仍可以手动返回其他的对象（如果返回值不是一个对象，则返回 `this` 对象）。
 
@@ -376,7 +371,7 @@ console.log(o.average, o.sum); // logs 2, 6
  *   // 等等...
  *
  *   // 如果函数具有返回对象的return语句，
- *   // 则该对象将是 new 表达式的结果。 
+ *   // 则该对象将是 new 表达式的结果。
  *   // 否则，表达式的结果是当前绑定到 this 的对象。
  *   //（即通常看到的常见情况）。
  * }
@@ -389,10 +384,9 @@ function C() {
 var o = new C();
 console.log(o.a); // logs 37
 
-
 function C2() {
 	this.a = 37;
-	return {a: 38};
+	return { a: 38 };
 }
 
 o = new C2();
@@ -401,7 +395,7 @@ console.log(o.a); // logs 38
 
 > 在刚刚的例子中（`C2`），因为在调用构造函数的过程中，手动的设置了返回对象，与`this`绑定的默认对象被丢弃了。（这基本上使得语句 “`this.a = 37`;”成了“僵尸”代码，实际上并不是真正的“僵尸”，这条语句执行了，但是对于外部没有任何影响，因此完全可以忽略它）。
 
-##### 1.1.5.7 作为一个DOM事件处理函数
+##### 1.1.5.7 作为一个 DOM 事件处理函数
 
 当函数被用作事件处理函数时，它的 `this` 指向触发事件的元素（一些浏览器在使用非 `addEventListener` 的函数动态地添加监听函数时不遵守这个约定）。
 
@@ -412,41 +406,35 @@ function bluify(e) {
 
 	// 当 currentTarget 和 target 是同一个对象时为 true
 	console.log(this === e.target);
-	this.style.backgroundColor = '#A5D9F3';
+	this.style.backgroundColor = "#A5D9F3";
 }
 
 // 获取文档中的所有元素的列表
-var elements = document.getElementsByTagName('*');
+var elements = document.getElementsByTagName("*");
 
 // 将bluify作为元素的点击监听函数，当元素被点击时，就会变成蓝色
 for (var i = 0; i < elements.length; i++) {
-	elements[i].addEventListener('click', bluify, false);
+	elements[i].addEventListener("click", bluify, false);
 }
 ```
 
 ##### 1.1.5.8 作为一个内联事件处理函数
 
-当代码被内联` on-event` 处理函数 调用时，它的`this`指向监听器所在的DOM元素：
+当代码被内联` on-event` 处理函数 调用时，它的`this`指向监听器所在的 DOM 元素：
 
 ```html
-
-<button onclick="alert(this.tagName.toLowerCase());">
-	Show this
-</button>
+<button onclick="alert(this.tagName.toLowerCase());">Show this</button>
 ```
 
 上面的 `alert` 会显示 `button`。注意只有外层代码中的 `this` 是这样设置的：
 
 ```html
-
-<button onclick="alert((function(){return this})());">
-	Show inner this
-</button>
+<button onclick="alert((function(){return this})());">Show inner this</button>
 ```
 
 在这种情况下，没有设置内部函数的 `this`，所以它指向 `global/window` 对象（即非严格模式下调用的函数未设置 `this` 时指向的默认对象）。
 
-##### 1.1.5.9 类中的this
+##### 1.1.5.9 类中的 this
 
 和其他普通函数一样，方法中的 `this` 值取决于它们如何被调用。有时，改写这个行为，让类中的 `this` 值总是指向这个类实例会很有用。为了做到这一点，可在构造函数中绑定类方法：
 
@@ -466,13 +454,13 @@ class Car {
 	}
 
 	get name() {
-		return 'Ferrari';
+		return "Ferrari";
 	}
 }
 
 class Bird {
 	get name() {
-		return 'Tweety';
+		return "Tweety";
 	}
 }
 
@@ -486,7 +474,7 @@ bird.sayHi(); // Hello from Tweety
 
 // For bound methods, 'this' doesn't depend on the caller
 bird.sayBye = car.sayBye;
-bird.sayBye();  // Bye from Ferrari
+bird.sayBye(); // Bye from Ferrari
 ```
 
 > 注意：类内部总是严格模式。调用一个 `this` 值为 `undefined` 的方法会抛出错误。
@@ -501,7 +489,7 @@ bird.sayBye();  // Bye from Ferrari
 
 ### 1.4 精准计时
 
-### 1.5 js数据类型
+### 1.5 js 数据类型
 
 typeof、instanceof
 
@@ -520,15 +508,15 @@ typeof、instanceof
 #### 1.5.2 结构类型
 
 8. Object: `typeof instance === "object"`
-	1. Object
-	2. Array
-	3. Map
-	4. Set
-	5. WeakMap
-	6. SeakSet
-	7. Date
-	8. 其它通过 `new` 关键字生成的
-	9. Function: `typeof instance === "function"`
+   1. Object
+   2. Array
+   3. Map
+   4. Set
+   5. WeakMap
+   6. SeakSet
+   7. Date
+   8. 其它通过 `new` 关键字生成的
+   9. Function: `typeof instance === "function"`
 
 ### 1.6 事件委托、事件代理
 
@@ -544,10 +532,12 @@ typeof、instanceof
 
 ### 1.12 DPR
 
-ie设备获取devicePixelRatio:
+ie 设备获取 devicePixelRatio:
 
 ```js
-const DPR = window.devicePixelRatio || window.screen.deviceXDPI / window.screen.logicalXDPI
+const DPR =
+	window.devicePixelRatio ||
+	window.screen.deviceXDPI / window.screen.logicalXDPI;
 ```
 
 ### 1.13 获取音频相关
@@ -555,13 +545,13 @@ const DPR = window.devicePixelRatio || window.screen.deviceXDPI / window.screen.
 #### 1.13.1 `enumerateDevices()`
 
 ```js
-navigator.mediaDevices.enumerateDevices() // 返回一个包含当前系统支持的音频/视频输入/输出设备
+navigator.mediaDevices.enumerateDevices(); // 返回一个包含当前系统支持的音频/视频输入/输出设备
 ```
 
 #### 1.13.2 `getSupportedConstraints()`
 
 ```js
-navigator.mediaDevices.getSupportedConstraints() // 返回受支持的设置项
+navigator.mediaDevices.getSupportedConstraints(); // 返回受支持的设置项
 ```
 
 #### 1.13.3 `getDisplayMedia()`
@@ -576,11 +566,11 @@ navigator.mediaDevices.getSupportedConstraints() // 返回受支持的设置项
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
 
-## 2.js库
+## 2.js 库
 
 ### 2.1 `vue`
 
-#### 2.1.1 vue不能监测的数据变化
+#### 2.1.1 vue 不能监测的数据变化
 
 ##### 2.1.1.1 数组
 
@@ -684,15 +674,15 @@ navigator.mediaDevices.getSupportedConstraints() // 返回受支持的设置项
 
 ```js
 setTimeout(() => {
-	console.log(1)
-})
+	console.log(1);
+});
 
 new Promise((resove, reject) => {
-	console.log(2)
-	resove()
+	console.log(2);
+	resove();
 }).then(() => {
-	console.log(3)
-})
+	console.log(3);
+});
 
-console.log(4)
+console.log(4);
 ```

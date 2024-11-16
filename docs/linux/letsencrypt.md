@@ -19,7 +19,7 @@ acme.sh --set-default-ca --server letsencrypt
 ### 2.1. Supported CA
 
 | Short Name       | ACME server URL                                                        | Usage Wiki                                                                           |
-|------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| ---------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | letsencrypt      | https://acme-v02.api.letsencrypt.org/directory                         | N/A                                                                                  |
 | letsencrypt_test | https://acme-staging-v02.api.letsencrypt.org/directory                 | N/A                                                                                  |
 | buypass          | https://api.buypass.com/acme/directory                                 | [BuyPass.com CA](https://github.com/acmesh-official/acme.sh/wiki/BuyPass.com-CA)     |

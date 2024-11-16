@@ -53,20 +53,20 @@ ttl resource:lock => -2
 
 `RPUSH`,`LPUSH`,`LLEN`,`LRANGE`,`LPOP`,`RPOP`
 
-#### `RPUSH`在list尾部增加新值
+#### `RPUSH`在 list 尾部增加新值
 
 ```bash
 RPUSH friends 'Alice'
 RPUSH friends 'Bob'
 ```
 
-#### `LPUSH`在list头部增加新值
+#### `LPUSH`在 list 头部增加新值
 
 ```bash
 LPUSH friends 'Sam'
 ```
 
-#### `LRANGE`截取list的一段子集
+#### `LRANGE`截取 list 的一段子集
 
 ```bash
 LRANGE friends 0 -1 => 1) "Sam", 2) "Alice", 3) "Bob"
@@ -76,15 +76,15 @@ LRANGE friends 1 2 => 1) "Sam", 2) "Bob"
 
 > 从第一个索引考试到第二个索引结束
 >
-> 如果第二个索引是-1则截取到结尾
+> 如果第二个索引是-1 则截取到结尾
 
-#### `LLEN`返回list的长度
+#### `LLEN`返回 list 的长度
 
 ```bash
 LLEN friends => 3
 ```
 
-#### `LPOP`删除list第一个元素并返回它
+#### `LPOP`删除 list 第一个元素并返回它
 
 ```bash
 LPOP friends => "Sam"
@@ -92,7 +92,7 @@ LLEN friends => 2
 LRANGE friends 0 -1 => 1) "Alice", 2) "Bob"
 ```
 
-#### `RPOP`删除list最后一个元素并返回它
+#### `RPOP`删除 list 最后一个元素并返回它
 
 ```bash
 RPOP friends => "Bob"
@@ -102,11 +102,11 @@ LRANGE friends 0 -1 => 1) "Alice"
 
 ### `SET`类型数据
 
-> set类型数据没有特定的顺序，并且每个元素只出现一次
+> set 类型数据没有特定的顺序，并且每个元素只出现一次
 
 `SADD`, `SREM`, `SISMEMBER`, `SMEMBERS`, `SUNION`
 
-#### `SADD`把指定的值添加到set中
+#### `SADD`把指定的值添加到 set 中
 
 ```bash
 SADD superpowers "flight" => (integer) 1
@@ -114,28 +114,28 @@ SADD superpowers "x-ray vision" => (integer) 1
 SADD superpowers "reflexes" => (integer) 1
 ```
 
-#### `SREM`把指定的值从set中删除
+#### `SREM`把指定的值从 set 中删除
 
 ```bash
 SREM superpowers 'reflexes' => 1
 ```
 
-#### `SISMEMBER`检测指定的值是否在set中
+#### `SISMEMBER`检测指定的值是否在 set 中
 
 ```bash
 SISMEMBER superpowers 'flight' => 1
 SISMEMBER superpowers 'reflex' => 0
 ```
 
-> 如果存在则返回1，否则返回0
+> 如果存在则返回 1，否则返回 0
 
-#### `SMEMBERS`返回指定set所有元素组成的list
+#### `SMEMBERS`返回指定 set 所有元素组成的 list
 
 ```ba
 SMEMBERS superpowers => 1) "flight", 2) "x-ray vision"
 ```
 
-#### `SUNION`拼接两个或多个set，返回所有元素的新list
+#### `SUNION`拼接两个或多个 set，返回所有元素的新 list
 
 ```bash
 SADD birdpowers 'pecking'
@@ -145,7 +145,7 @@ SUNION superpowers birdpowers => 1) 'pecking', 2) 'x-ray vision', 3) 'flight'
 
 ### `Sorted Sets`类型数据
 
-> `Sorted Sets`类型数据类似于普通`set`，但是每个元素都有个相关的分数(Score)，这个分数用来给set中的元素进行排序
+> `Sorted Sets`类型数据类似于普通`set`，但是每个元素都有个相关的分数(Score)，这个分数用来给 set 中的元素进行排序
 
 #### `ZADD`添加元素
 
@@ -162,7 +162,7 @@ ZADD hackers 1912 "Alan Turing"
 
 > 这个例子中，年份是分数(score)，著名的黑客(hackers)名字是对应的值。
 
-#### `ZRANGE`截取一段并返回list
+#### `ZRANGE`截取一段并返回 list
 
 ```bash
 ZRANGE hackers 2 4 => 1) "Claude Shannon", 2) "Alan Kay", 3) "Richard Stallman"

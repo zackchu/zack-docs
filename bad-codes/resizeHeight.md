@@ -1,38 +1,43 @@
-# js实时计算设置容器高度
+# js 实时计算设置容器高度
 
 ## 原始代码展示
 
 js
 
 ```js
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
-import styles from './index.less';
+import styles from "./index.less";
 
 export default class Content extends PureComponent {
 	state = {
-		height: 'auto',
-	}
+		height: "auto",
+	};
 
 	componentDidMount() {
 		this.updateHeight();
-		window.addEventListener('resize', this.updateHeight);
+		window.addEventListener("resize", this.updateHeight);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('resize', this.updateHeight);
+		window.removeEventListener("resize", this.updateHeight);
 	}
 
 	updateHeight = () => {
-		const height = Math.max(window.innerHeight, document.documentElement.clientHeight) - 50;
-		this.setState({height});
-	}
+		const height =
+			Math.max(window.innerHeight, document.documentElement.clientHeight) - 50;
+		this.setState({ height });
+	};
 
 	render() {
-		const {height} = this.state;
-		const {children} = this.props;
-		return <div className={styles.report__content} style={{height}}>{children}</div>
+		const { height } = this.state;
+		const { children } = this.props;
+		return (
+			<div className={styles.report__content} style={{ height }}>
+				{children}
+			</div>
+		);
 	}
 }
 ```
@@ -56,7 +61,7 @@ import React from "react";
 import styles from "./index.less";
 
 export default function Content(props) {
-	const {children} = props;
+	const { children } = props;
 	return <div className={styles.report__content}>{children}</div>;
 }
 ```
@@ -75,4 +80,4 @@ export default function Content(props) {
 
 ## 原因
 
-能用css控制的样式避免用js去操作
+能用 css 控制的样式避免用 js 去操作

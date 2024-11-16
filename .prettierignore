@@ -1,3 +1,5 @@
 # Ignore artifacts:
 build
 coverage
+package-lock.json
+docs/markdown.md

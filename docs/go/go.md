@@ -5,19 +5,20 @@
 1. bool
 2. string
 3. int
-    - int8
-    - int16
-    - int32
-    - int64
+   - int8
+   - int16
+   - int32
+   - int64
 4. uint
-    - uint8
-    - uint16
-    - uint32
-    - uint64
-    - uintptr
+   - uint8
+   - uint16
+   - uint32
+   - uint64
+   - uintptr
 5. byte
 
    > alias for uint8
+
 6. rune
    > alias for int32  
    > represents a Unicode code point
@@ -49,7 +50,7 @@ func main() {
 }
 ```
 
-Variables declared without an explicit initial value are given their *zero value*.
+Variables declared without an explicit initial value are given their _zero value_.
 
 - 0 for numeric types
 - false for the boolean type
