@@ -5,3 +5,11 @@
 ```shell
 dpkg-reconfigure tzdata
 ```
+
+## 2. 本地化配置
+
+详情见: https://wiki.debian.org/Locale
+
+```shell
+sudo dpkg-reconfigure locales
+```
