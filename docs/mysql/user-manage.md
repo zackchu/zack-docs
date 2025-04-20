@@ -3,22 +3,22 @@
 ## Create user
 
 ```mysql
-create user 'user'@'hostname';
-create user 'user'@'%';
+CREATE USER 'user'@'hostname';
+CREATE USER 'user'@'%';
 
-create user 'new_user'@'localhost' identified by 'new_password';
+CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'new_password';
 ```
 
 ## Grant access
 
 ```mysql
-grant all on my_db.* to 'new_user'@'localhost';
-grant all privileges on dbTest.* to 'user'@'hostname' identified by 'password';
+GRANT ALL ON my_db.* TO 'new_user'@'localhost';
+GRANT ALL PRIVILEGES ON dbtest.* TO 'user'@'hostname' IDENTIFIED BY 'password';
 
 ```
 
 ## Flush privileges
 
 ```mysql
-flush privileges;
+FLUSH PRIVILEGES;
 ```
