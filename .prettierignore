@@ -3,3 +3,10 @@ build
 coverage
 package-lock.json
 docs/markdown.md
+
+# VuePress default temp directory
+docs/.vuepress/.temp
+# VuePress default cache directory
+docs/.vuepress/.cache
+# VuePress default build output directory
+docs/.vuepress/dist
