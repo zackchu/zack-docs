@@ -1,0 +1,9 @@
+#!/bin/sh
+
+S2_PATH="/usr/local"
+
+exec "$S2_PATH/bin/clang++" \
+  -nostdinc++ -isystem "$S2_PATH/include/c++/v1" \
+  -nostdlib++ -L "$S2_PATH/lib" -lc++ -lc++abi -lunwind \
+  -Wl,-rpath,"$S2_PATH/lib" \
+  "$@"
