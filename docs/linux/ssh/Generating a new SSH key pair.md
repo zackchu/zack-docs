@@ -1,4 +1,6 @@
-# Generating a new SSH key pair
+# SSH key manage
+
+## Generating a new SSH key pair
 
 Before creating an SSH key pair, make sure to read about the different types of keys to understand their differences.
 
@@ -27,8 +29,20 @@ To create a new SSH key pair:
    2. If you already have an SSH key pair with the suggested file path, you will need to input a new file path and
       declare what host this SSH key pair will be used for in your `~/.ssh/config` file.
 4. Once the path is decided, you will be prompted to input a password to secure your new SSH key pair. It's a best
-   practice to use a password, but it's not required and you can skip creating it by pressing Enter twice. If, in any
+   practice to use a password, but it's not required, and you can skip creating it by pressing Enter twice. If, in any
    case, you want to add or change the password of your SSH key pair, you can use the `-p` flag:
    ```shell
    ssh-keygen -p -o -f <keyname>
    ```
+
+## 修改注释
+
+```shell
+ssh-keygen -c -C "你的新注释内容" -f ~/.ssh/你的私钥文件名
+```
+
+重新生成对应的公钥
+
+```shell
+ssh-keygen -y -f ~/.ssh/你的私钥文件名 > ~/.ssh/你的私钥文件名.pub
+```
